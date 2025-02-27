@@ -1,0 +1,66 @@
+.sidebar {
+  /* Space content away from sidebar */
+  --content-margin: 2rem;
+  /* Space headers away from previous */
+  --heading-margin: 2rem;
+  /* Space labels away from header */
+  --label-margin: 0.5rem;
+
+  width: 20%;
+  height: calc(100vh - 1rem);
+  background-color: #d3d3d3;
+  border-radius: 1rem;
+}
+
+.menu-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.menu {
+  font-size: 1.5rem;
+}
+
+.header-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.search {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.35rem;
+  margin-left: var(--content-margin);
+}
+
+.sidebar-icon {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.search input {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+.tasks {
+  font-size: 0.85rem;
+  margin-left: var(--content-margin);
+}
+
+.sidebar-heading {
+  margin-top: var(--heading-margin);
+}
+
+.icon-label-wrapper {
+  display: flex;
+  width: 80%;
+  margin: var(--label-margin);
+  gap: 0.5rem;
+}
+
+.label {
+  flex-grow: 1;
+}

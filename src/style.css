@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "Domine";
+  src: url("./fonts/Domine-Regular.woff2") format("woff2"),
+    url("./fonts/Domine-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Domine", "Franklin Gothic Medium", "Arial Narrow", Arial,
+    sans-serif;
+}
+
+body {
+  padding: 0.5rem;
+}
