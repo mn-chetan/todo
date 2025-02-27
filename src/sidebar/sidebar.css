@@ -4,7 +4,9 @@
   /* Space headers away from previous */
   --heading-margin: 2rem;
   /* Space labels away from header */
-  --label-margin: 0.5rem;
+  --label-margin: 0.95rem;
+  /* Font size of content */
+  --content-font: 0.85rem;
 
   width: 20%;
   height: calc(100vh - 1rem);
@@ -45,8 +47,9 @@
   outline: none;
 }
 
-.tasks {
-  font-size: 0.85rem;
+.tasks,
+.projects {
+  font-size: var(--content-font);
   margin-left: var(--content-margin);
 }
 
