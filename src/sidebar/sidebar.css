@@ -62,8 +62,14 @@
   width: 80%;
   margin: var(--label-margin);
   gap: 0.5rem;
+  align-items: center;
 }
 
 .label {
   flex-grow: 1;
+}
+
+.add-project {
+  width: 1.25rem;
+  height: 1.25rem;
 }
