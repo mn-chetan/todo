@@ -23,7 +23,7 @@ export const addProject = () => {
     const colorBox = document.createElement("div");
     colorBox.classList.add("color-box");
     colorBox.style.backgroundColor =
-      colorChoices[Math.floor(Math.random() * 8) + 1];
+      colorChoices[Math.floor(Math.random() * 8)];
 
     const input = document.createElement("input");
     input.type = "text";
