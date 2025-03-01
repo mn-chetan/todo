@@ -28,6 +28,27 @@ export const addProject = () => {
     const input = document.createElement("input");
     input.type = "text";
     input.placeholder = "Project Name";
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        const div = document.createElement("div");
+        div.classList.add("icon-label-wrapper");
+
+        const currentColor = document.querySelector(
+          ".project-dialogue .color-box"
+        );
+
+        const span = document.createElement("span");
+        span.classList.add("label");
+        span.textContent = input.value;
+
+        div.appendChild(currentColor);
+        div.appendChild(span);
+
+        projectBox.remove();
+
+        addProject.parentNode.insertBefore(div, addProject);
+      }
+    });
 
     inputLine.appendChild(colorBox);
     inputLine.appendChild(input);
@@ -38,6 +59,11 @@ export const addProject = () => {
       const div = document.createElement("div");
       div.classList.add("color-box");
       div.style.backgroundColor = color;
+
+      div.addEventListener("click", () => {
+        colorBox.style.backgroundColor = color;
+      });
+
       colors.appendChild(div);
     });
 
