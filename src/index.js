@@ -1,2 +1,4 @@
 import "./style.css";
-import "./sidebar/sidebar";
+import { addProject } from "./sidebar/sidebar";
+
+addProject();
