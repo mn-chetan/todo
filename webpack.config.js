@@ -9,7 +9,11 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/template.html",
+    }),
+  ],
   module: {
     rules: [
       {
@@ -19,4 +23,7 @@ module.exports = {
     ],
   },
   devtool: "eval-source-map",
+  devServer: {
+    watchFiles: ["./src/template.html"],
+  },
 };
