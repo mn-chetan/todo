@@ -34,6 +34,18 @@
   background-color: #ddd;
 }
 
+.add-project {
+  font-style: italic;
+  color: #555;
+  border-top: 1px solid #ddd;
+  margin-top: 1rem;
+  padding: 0.85rem;
+}
+
+.add-project:hover {
+  background-color: #ddd;
+}
+
 /* Main Area */
 .main {
   flex-grow: 1;
