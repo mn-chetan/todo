@@ -64,9 +64,8 @@
 }
 
 .todo-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) 2rem;
   padding: 0.6rem;
   border: 1px solid #ccc;
   cursor: pointer;
@@ -90,6 +89,7 @@
   border: none;
   padding: 5px 10px;
   cursor: pointer;
+  text-align: center;
 }
 
 /* Project Modal */
