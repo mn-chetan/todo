@@ -87,3 +87,15 @@ export const addProject = () => {
     document.body.appendChild(modal);
   });
 };
+
+export const loadProjects = () => {
+  const addProject = document.querySelector(".add-project");
+
+  Object.keys(projects).forEach((key) => {
+    const li = document.createElement("li");
+    li.classList.add("project-item");
+    li.textContent = key;
+    // Insert all projects before add project
+    addProject.parentNode.insertBefore(li, addProject);
+  });
+};
