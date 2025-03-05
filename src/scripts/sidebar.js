@@ -131,6 +131,8 @@ const submitProject = (value, modal) => {
   if (value.trim()) projects[value] = [];
   // Refresh the projects list
   loadProjects();
+  // Switch projects
+  switchProject();
 };
 
 // Remove modal from DOM
