@@ -1,4 +1,4 @@
-import { projects } from "./state";
+import { getProjectState, setProjectState } from "./projectState";
 import { updateTodo } from "./todo";
 
 export const switchProject = () => {
@@ -114,7 +114,9 @@ export const loadProjects = () => {
 
   const addProject = document.querySelector(".add-project");
 
-  Object.keys(projects).forEach((key) => {
+  const projectState = getProjectState();
+
+  Object.keys(projectState).forEach((key) => {
     const li = document.createElement("li");
     li.classList.add("project-item");
     li.textContent = key;
@@ -128,7 +130,11 @@ const submitProject = (value, modal) => {
   // Remove modal after add project button is clicked
   removeModal(modal);
   // Initialize new project with an empty array
-  if (value.trim()) projects[value] = [];
+  if (value.trim()) {
+    const currentState = getProjectState();
+    currentState[value] = [];
+    setProjectState(currentState);
+  }
   // Refresh the projects list
   loadProjects();
   // Switch projects
