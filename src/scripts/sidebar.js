@@ -21,6 +21,7 @@ export const switchProject = () => {
   });
 };
 
+// Handles creation and submission of new projects via a modal
 export const addProject = () => {
   const addProject = document.querySelector(".add-project");
 
@@ -33,6 +34,7 @@ export const addProject = () => {
     const modalContent = document.createElement("div");
     modalContent.classList.add("modal-content");
 
+    // Close button for dismissing the modal
     const closeButton = document.createElement("span");
     closeButton.classList.add("close-btn");
     closeButton.innerHTML = "&times;";
@@ -71,6 +73,11 @@ export const addProject = () => {
     submitButton.classList.add("btn", "btn-add");
     submitButton.type = "submit";
     submitButton.textContent = "Add Project";
+    // Handle form submission to add the new project
+    submitButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      submitProject(input.value, modal);
+    });
 
     btnContainer.appendChild(cancelButton);
     btnContainer.appendChild(submitButton);
@@ -88,7 +95,15 @@ export const addProject = () => {
   });
 };
 
+// Loads and displays all the projects in sidebar
 export const loadProjects = () => {
+  // Clear the projects from sidebar before inserting to avoid duplicates
+  const projectList = document.querySelector(".project-list");
+  const projectItems = document.querySelectorAll(".project-item");
+  projectItems.forEach((item) => {
+    projectList.removeChild(item);
+  });
+
   const addProject = document.querySelector(".add-project");
 
   Object.keys(projects).forEach((key) => {
@@ -98,4 +113,14 @@ export const loadProjects = () => {
     // Insert all projects before add project
     addProject.parentNode.insertBefore(li, addProject);
   });
+};
+
+// Adds a new project to the projects object and loads projects again
+const submitProject = (value, modal) => {
+  // Remove modal after add project button is clicked
+  document.body.removeChild(modal);
+  // Initialize new project with an empty array
+  projects[value] = [];
+  // Refresh the projects list
+  loadProjects();
 };
