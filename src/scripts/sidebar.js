@@ -15,7 +15,7 @@ export const switchProject = () => {
       const projectName = item.textContent;
       mainTitle.textContent = `${projectName} Todos`;
       // Pass the todos for this project to the todo list
-      const projectTodos = projects[projectName];
+      const projectTodos = getProjectState()[projectName];
       updateTodo(projectTodos); // Call a function in todo.js
     });
   });
