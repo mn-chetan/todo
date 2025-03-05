@@ -38,6 +38,10 @@ export const addProject = () => {
     const closeButton = document.createElement("span");
     closeButton.classList.add("close-btn");
     closeButton.innerHTML = "&times;";
+    // Remove Modal on clicking 'X'
+    closeButton.addEventListener("click", () => {
+      removeModal(modal);
+    });
 
     const h3 = document.createElement("h3");
     h3.textContent = "Add new project";
@@ -68,6 +72,10 @@ export const addProject = () => {
     cancelButton.classList.add("btn", "btn-cancel");
     cancelButton.type = "button";
     cancelButton.textContent = "Cancel";
+    // Remove modal on clicking 'Cancel' Button
+    cancelButton.addEventListener("click", () => {
+      removeModal(modal);
+    });
 
     const submitButton = document.createElement("button");
     submitButton.classList.add("btn", "btn-add");
@@ -118,9 +126,14 @@ export const loadProjects = () => {
 // Adds a new project to the projects object and loads projects again
 const submitProject = (value, modal) => {
   // Remove modal after add project button is clicked
-  document.body.removeChild(modal);
+  removeModal(modal);
   // Initialize new project with an empty array
   projects[value] = [];
   // Refresh the projects list
   loadProjects();
+};
+
+// Remove modal from DOM
+const removeModal = (modal) => {
+  document.body.removeChild(modal);
 };
