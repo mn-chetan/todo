@@ -128,7 +128,7 @@ const submitProject = (value, modal) => {
   // Remove modal after add project button is clicked
   removeModal(modal);
   // Initialize new project with an empty array
-  projects[value] = [];
+  if (value.trim()) projects[value] = [];
   // Refresh the projects list
   loadProjects();
 };
