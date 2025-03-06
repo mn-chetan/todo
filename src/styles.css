@@ -27,6 +27,9 @@
 .project-item {
   padding: 0.85rem;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .project-item:hover,
@@ -44,6 +47,20 @@
 
 .add-project:hover {
   background-color: #ddd;
+}
+
+.delete-project-btn {
+  background: #f00;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.delete-project-btn:hover {
+  background: #d00;
 }
 
 /* Main Area */

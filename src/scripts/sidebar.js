@@ -12,7 +12,7 @@ export const switchProject = () => {
       // Add active class to clicked item
       item.classList.add("active");
       // Update main title to reflect selected project
-      const projectName = item.textContent;
+      const projectName = item.firstChild.textContent;
       mainTitle.textContent = `${projectName} Todos`;
       // Pass the todos for this project to the todo list
       const projectTodos = getProjectState()[projectName];
@@ -119,7 +119,26 @@ export const loadProjects = () => {
   Object.keys(projectState).forEach((key) => {
     const li = document.createElement("li");
     li.classList.add("project-item");
-    li.textContent = key;
+
+    // Project Name
+    const projectNameSpan = document.createElement("span");
+    projectNameSpan.classList.add("project-title");
+    projectNameSpan.textContent = key;
+
+    // Delete Button
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-project-btn");
+    deleteButton.textContent = "X";
+
+    // Attach delete functionality
+    deleteButton.addEventListener("click", (e) => {
+      e.stopPropagation(); // Prevent project switching on delete click
+      deleteProject(key);
+    });
+
+    li.appendChild(projectNameSpan);
+    li.appendChild(deleteButton);
+
     // Insert all projects before add project
     addProject.parentNode.insertBefore(li, addProject);
   });
@@ -144,4 +163,11 @@ const submitProject = (value, modal) => {
 // Remove modal from DOM
 const removeModal = (modal) => {
   document.body.removeChild(modal);
+};
+
+const deleteProject = (projectName) => {
+  const projectState = getProjectState();
+  delete projectState[projectName]; // Remove project from state
+  setProjectState(projectState); // Save new state to local storage
+  loadProjects(); // Refresh project list
 };
