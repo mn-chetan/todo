@@ -180,6 +180,41 @@ modal-content h3 {
 /* Todo Form */
 .todo-container {
   border: 1px solid #ccc;
-  padding: 0.5rem;
+  padding: 1rem;
   margin: 0.5rem 0;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.todo-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.todo-container label {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.todo-container input,
+.todo-container select {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 0.9rem;
+}
+
+.todo-container select {
+  background-color: white;
+  cursor: pointer;
+}
+
+.todo-container input:focus,
+.todo-container select:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 3px rgba(76, 175, 80, 0.3);
 }
