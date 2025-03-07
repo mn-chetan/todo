@@ -218,3 +218,33 @@ modal-content h3 {
   border-color: #4caf50;
   box-shadow: 0 0 3px rgba(76, 175, 80, 0.3);
 }
+
+.todo-container .btn-submit {
+  background-color: #4caf50;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.todo-container .btn-close {
+  background-color: #ccc;
+  color: black;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.todo-container .btn-submit:hover {
+  background-color: #45a049;
+}
+
+.todo-container .btn-close:hover {
+  background-color: #bbb;
+}
+
+.todo-container .button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}

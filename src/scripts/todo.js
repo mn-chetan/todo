@@ -84,6 +84,23 @@ export const expandTodo = () => {
       prioritySelect.appendChild(priorityMediumOption);
       prioritySelect.appendChild(priorityHighOption);
 
+      // Create container for form buttons
+      const buttonContainer = document.createElement("div");
+      buttonContainer.classList.add("button-container");
+
+      // Submit Button
+      const submitButton = document.createElement("button");
+      submitButton.textContent = "Submit";
+      submitButton.classList.add("btn-submit");
+
+      // Close Button
+      const closeButton = document.createElement("button");
+      closeButton.textContent = "Close";
+      closeButton.classList.add("btn-close");
+
+      buttonContainer.appendChild(submitButton);
+      buttonContainer.appendChild(closeButton);
+
       // Assemble the form
       todoForm.appendChild(titleLabel);
       todoForm.appendChild(titleInput);
@@ -91,6 +108,7 @@ export const expandTodo = () => {
       todoForm.appendChild(dueDateInput);
       todoForm.appendChild(priorityLabel);
       todoForm.appendChild(prioritySelect);
+      todoForm.appendChild(buttonContainer);
 
       todoContainer.appendChild(todoForm);
 
