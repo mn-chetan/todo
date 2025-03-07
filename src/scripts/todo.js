@@ -71,7 +71,9 @@ export const expandTodo = () => {
       todoForm.appendChild(priorityLabel);
       todoForm.appendChild(prioritySelect);
 
-      todoItem.after(todoForm);
+      todoContainer.appendChild(todoForm);
+
+      todoItem.after(todoContainer);
     });
   });
 };
