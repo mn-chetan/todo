@@ -1,5 +1,5 @@
 import { getProjectState, setProjectState } from "./projectState";
-import { updateTodo } from "./todo";
+import { updateTodo, expandTodo } from "./todo";
 
 export const switchProject = () => {
   const projectItems = document.querySelectorAll(".project-item");
@@ -17,6 +17,8 @@ export const switchProject = () => {
       // Pass the todos for this project to the todo list
       const projectTodos = getProjectState()[projectName];
       updateTodo(projectTodos); // Call a function in todo.js
+      // Enable option to expand each todo on click
+      expandTodo();
     });
   });
 };

@@ -176,3 +176,10 @@ modal-content h3 {
   background-color: #4caf50;
   color: white;
 }
+
+/* Todo Form */
+.todo-container {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+}
