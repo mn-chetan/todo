@@ -20,6 +20,10 @@ export const expandTodo = () => {
     // Display a form on click
     // Form can be used to edit todo fields
     todoItem.addEventListener("click", () => {
+      // Remove any existing todo container before appending new one
+      const existingTodoContainer = document.querySelector(".todo-container");
+      if (existingTodoContainer) existingTodoContainer.remove();
+
       const todoContainer = document.createElement("div");
       todoContainer.classList.add("todo-container");
 
