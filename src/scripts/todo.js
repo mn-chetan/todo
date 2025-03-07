@@ -31,8 +31,7 @@ export const expandTodo = () => {
     // Add a click listener to each todo item to expand it into an editable form
     todoItem.addEventListener("click", () => {
       // Remove any existing todo container to ensure only one form is displayed at a time
-      const existingTodoContainer = document.querySelector(".todo-container");
-      if (existingTodoContainer) existingTodoContainer.remove();
+      removeExistingTodoContainer();
 
       // Create a container for the editable form
       const todoContainer = document.createElement("div");
@@ -97,6 +96,11 @@ export const expandTodo = () => {
       const closeButton = document.createElement("button");
       closeButton.textContent = "Close";
       closeButton.classList.add("btn-close");
+      closeButton.setAttribute("type", "button");
+      // Remove todo container from DOM
+      closeButton.addEventListener("click", (e) => {
+        removeExistingTodoContainer();
+      });
 
       buttonContainer.appendChild(submitButton);
       buttonContainer.appendChild(closeButton);
@@ -116,4 +120,10 @@ export const expandTodo = () => {
       todoItem.after(todoContainer);
     });
   });
+};
+
+// Function to remove todo container from DOM
+const removeExistingTodoContainer = () => {
+  const existingTodoContainer = document.querySelector(".todo-container");
+  if (existingTodoContainer) existingTodoContainer.remove();
 };
