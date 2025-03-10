@@ -1,6 +1,7 @@
 export const projects = {
   Personal: [
     {
+      id: "proj-001",
       title: "Gym",
       dueDate: "2025-03-04",
       priority: "low",
@@ -8,6 +9,7 @@ export const projects = {
       notes: "",
     },
     {
+      id: "proj-002",
       title: "Website Redesign",
       dueDate: "2025-03-15",
       priority: "high",
@@ -21,6 +23,7 @@ export const projects = {
       ],
     },
     {
+      id: "proj-003",
       title: "Book Reading",
       dueDate: "2025-03-20",
       priority: "medium",
