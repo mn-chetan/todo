@@ -1,3 +1,5 @@
+import { getProjectState, setProjectState } from "./projectState";
+
 export const updateTodo = (todos) => {
   // Select the container for the todo list
   const todoList = document.querySelector(".todo-list");
@@ -10,6 +12,7 @@ export const updateTodo = (todos) => {
     const todoItem = document.createElement("div");
     todoItem.classList.add("todo-item");
     todoItem.dataset.priority = todo.priority; // Store priority as a data attribute for later use
+    todoItem.dataset.id = todo.id;
 
     // Define the HTML structure for each todo item
     todoItem.innerHTML = `
@@ -50,6 +53,7 @@ export const expandTodo = () => {
         "placeholder",
         todoItem.querySelector(".todo-title").textContent
       );
+      titleInput.setAttribute("name", "title");
 
       // Due date field
       const dueDateLabel = document.createElement("label");
@@ -63,6 +67,7 @@ export const expandTodo = () => {
         "value",
         todoItem.querySelector(".todo-due").textContent.split(" ")[1]
       );
+      dueDateInput.setAttribute("name", "date");
 
       // Priority dropdown
       const priorityLabel = document.createElement("label");
@@ -70,11 +75,9 @@ export const expandTodo = () => {
       priorityLabel.textContent = "Priority:";
       const prioritySelect = document.createElement("select");
       prioritySelect.setAttribute("id", "priority");
+      prioritySelect.setAttribute("name", "priority");
       const priorityLowOption = document.createElement("option");
-      // Capitalize the first letter of the stored priority for display
-      priorityLowOption.textContent =
-        todoItem.dataset.priority[0].toUpperCase() +
-        todoItem.dataset.priority.slice(1);
+      priorityLowOption.textContent = "Low";
       const priorityMediumOption = document.createElement("option");
       priorityMediumOption.textContent = "Medium";
       const priorityHighOption = document.createElement("option");
@@ -82,6 +85,19 @@ export const expandTodo = () => {
       prioritySelect.appendChild(priorityLowOption);
       prioritySelect.appendChild(priorityMediumOption);
       prioritySelect.appendChild(priorityHighOption);
+
+      // Set the default selected option based on dataset.priority
+      switch (todoItem.dataset.priority.toLowerCase()) {
+        case "low":
+          priorityLowOption.setAttribute("selected", "selected");
+          break;
+        case "medium":
+          priorityMediumOption.setAttribute("selected", "selected");
+          break;
+        case "high":
+          priorityHighOption.setAttribute("selected", "selected");
+          break;
+      }
 
       // Create container for form buttons
       const buttonContainer = document.createElement("div");
@@ -114,6 +130,12 @@ export const expandTodo = () => {
       todoForm.appendChild(prioritySelect);
       todoForm.appendChild(buttonContainer);
 
+      todoForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        submitForm(todoForm, todoItem); // Update the todo with new values
+        removeExistingTodoContainer(); // Remove todo container from DOM
+      });
+
       todoContainer.appendChild(todoForm);
 
       // Insert the form container after the clicked todo item
@@ -126,4 +148,29 @@ export const expandTodo = () => {
 const removeExistingTodoContainer = () => {
   const existingTodoContainer = document.querySelector(".todo-container");
   if (existingTodoContainer) existingTodoContainer.remove();
+};
+
+const submitForm = (todoForm, todoItem) => {
+  const formData = new FormData(todoForm);
+  const title = formData.get("title");
+  const date = formData.get("date");
+  const priority = formData.get("priority");
+
+  const todoId = todoItem.dataset.id;
+  const projectState = getProjectState();
+
+  const todoToUpdate = Object.values(projectState)
+    .flat(Infinity)
+    .find((todo) => todo.id === todoId);
+
+  if (todoToUpdate) {
+    todoToUpdate.title = title || todoToUpdate.title;
+    todoToUpdate.dueDate = date;
+    todoToUpdate.priority = priority.toLowerCase();
+  }
+
+  setProjectState(projectState);
+
+  const activeProject = JSON.parse(localStorage.getItem("activeProject"));
+  updateTodo(projectState[activeProject["active"]]);
 };
