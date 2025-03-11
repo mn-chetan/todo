@@ -7,6 +7,12 @@ export const switchProject = () => {
 
   projectItems.forEach((item) => {
     item.addEventListener("click", () => {
+      // Retrieves the active project from localStorage and updates it with the clicked project's name.
+      const activeProject = localStorage.getItem("activeProject")
+        ? JSON.parse(localStorage.getItem("activeProject"))
+        : {};
+      activeProject["active"] = item.firstChild.textContent;
+      localStorage.setItem("activeProject", JSON.stringify(activeProject));
       // Remove active class from all items
       projectItems.forEach((i) => i.classList.remove("active"));
       // Add active class to clicked item
