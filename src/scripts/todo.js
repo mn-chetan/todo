@@ -11,15 +11,28 @@ export const updateTodo = (todos) => {
   todos.forEach((todo) => {
     const todoItem = document.createElement("div");
     todoItem.classList.add("todo-item");
-    todoItem.dataset.priority = todo.priority; // Store priority as a data attribute for later use
+    todoItem.dataset.priority = todo.priority; // Store priority as a data attribute
     todoItem.dataset.id = todo.id;
 
-    // Define the HTML structure for each todo item
-    todoItem.innerHTML = `
-      <span class="todo-title">${todo.title}</span>
-      <span class="todo-due">Due: ${todo.dueDate}</span>
-      <button class="delete-btn">X</button>
-    `;
+    // Create title element
+    const title = document.createElement("span");
+    title.classList.add("todo-title");
+    title.textContent = todo.title;
+
+    // Create due date element
+    const dueDate = document.createElement("span");
+    dueDate.classList.add("todo-due");
+    dueDate.textContent = `Due: ${todo.dueDate}`;
+
+    // Create delete button
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("delete-btn");
+    deleteBtn.textContent = "X";
+
+    // Append elements to the todo item
+    todoItem.appendChild(title);
+    todoItem.appendChild(dueDate);
+    todoItem.appendChild(deleteBtn);
 
     // Append the newly created todo item to the list
     todoList.appendChild(todoItem);
@@ -171,6 +184,8 @@ const submitForm = (todoForm, todoItem) => {
 
   setProjectState(projectState);
 
-  const activeProject = JSON.parse(localStorage.getItem("activeProject"));
+  const activeProject = localStorage.getItem("activeProject")
+    ? JSON.parse(localStorage.getItem("activeProject"))
+    : { active: "Personal" };
   updateTodo(projectState[activeProject["active"]]);
 };
