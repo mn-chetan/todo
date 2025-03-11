@@ -29,6 +29,11 @@ export const updateTodo = (todos) => {
     deleteBtn.classList.add("delete-btn");
     deleteBtn.textContent = "X";
 
+    deleteBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      removeTodo(e.target.parentNode.dataset.id);
+    });
+
     // Append elements to the todo item
     todoItem.appendChild(title);
     todoItem.appendChild(dueDate);
@@ -187,5 +192,32 @@ const submitForm = (todoForm, todoItem) => {
   const activeProject = localStorage.getItem("activeProject")
     ? JSON.parse(localStorage.getItem("activeProject"))
     : { active: "Personal" };
+  updateTodo(projectState[activeProject["active"]]);
+};
+
+const removeTodo = (projectId) => {
+  // Get the active project from localStorage, default to "Personal" if not found
+  const activeProject = localStorage.getItem("activeProject")
+    ? JSON.parse(localStorage.getItem("activeProject"))
+    : { active: "Personal" };
+  
+  // Retrieve the current project state
+  const projectState = getProjectState();
+  
+  // Iterate through all todos in the project state
+  for (let value of Object.values(projectState).flat(Infinity)) {
+    if (value.id === projectId) {
+      // Filter out the todo with matching projectId from the active project's todos
+      projectState[activeProject["active"]] = projectState[
+        activeProject["active"]
+      ].filter((todo) => todo.id !== projectId);
+      
+      // Update the project state with the modified todo list
+      setProjectState(projectState);
+      break; // Exit loop once the todo is found and removed
+    }
+  }
+  
+  // Refresh the todo list display with the updated todos for the active project
   updateTodo(projectState[activeProject["active"]]);
 };
