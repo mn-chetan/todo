@@ -147,6 +147,19 @@ export const loadProjects = () => {
     li.appendChild(projectNameSpan);
     li.appendChild(deleteButton);
 
+    // Check if the current project is the active project and update the UI accordingly
+    const activeProject = localStorage.getItem("activeProject")
+      ? JSON.parse(localStorage.getItem("activeProject"))
+      : { active: "Personal" };
+    if (
+      li.querySelector(".project-title").textContent === activeProject["active"]
+    ) {
+      li.classList.add("active");
+      updateTodo(
+        getProjectState()[li.querySelector(".project-title").textContent]
+      );
+    }
+
     // Insert all projects before add project
     addProject.parentNode.insertBefore(li, addProject);
   });
