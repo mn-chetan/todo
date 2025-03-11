@@ -158,6 +158,7 @@ export const loadProjects = () => {
       updateTodo(
         getProjectState()[li.querySelector(".project-title").textContent]
       );
+      expandTodo();
     }
 
     // Insert all projects before add project
