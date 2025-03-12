@@ -2,21 +2,23 @@
 
 A minimal yet powerful Todo App that allows you to create projects, manage tasks, and track priorities. Built with **vanilla JavaScript**, **Webpack**, and **localStorage** for persistent task management.
 
-![Todo App Screenshot](https://via.placeholder.com/1000x500?text=Todo+App+Screenshot)
+![Todo App Screenshot](screenshots/todo-app-main.png)
 
 ---
 
 ## 🚀 Features
+
 ✅ **Create, Edit, and Delete Todos** – Manage tasks efficiently.  
 ✅ **Project Management** – Organize todos into multiple projects.  
 ✅ **Persistent Storage** – Saves tasks using **localStorage**.  
 ✅ **Priority-Based Styling** – Tasks have color-coded priorities (Low, Medium, High).  
 ✅ **Dynamic UI** – Smooth, interactive experience without page reloads.  
-✅ **Fully Responsive** – Works across desktop and mobile devices.  
+✅ **Fully Responsive** – Works across desktop and mobile devices.
 
 ---
 
 ## 🛠️ Tech Stack
+
 - **JavaScript (ES6+)**
 - **Webpack**
 - **CSS (Flexbox & Grid)**
@@ -26,18 +28,23 @@ A minimal yet powerful Todo App that allows you to create projects, manage tasks
 ---
 
 ## 📸 Screenshots
+
 ### 🏠 Homepage (Default Project)
-![Homepage](https://via.placeholder.com/800x400?text=Homepage)
+
+![Homepage](screenshots/homepage.png)
 
 ### ➕ Adding a New Project
-![New Project](https://via.placeholder.com/800x400?text=New+Project)
 
-### ✅ Managing Todos in a Project
-![Manage Todos](https://via.placeholder.com/800x400?text=Manage+Todos)
+![New Project](screenshots/new-project.png)
+
+### ➕ Adding a Todo
+
+![Manage Todos](screenshots/manage-todos.png)
 
 ---
 
 ## 🔧 Installation & Setup
+
 1. **Clone the Repository**
    ```sh
    git clone https://github.com/YOUR_GITHUB_USERNAME/todo-app.git
@@ -59,6 +66,7 @@ A minimal yet powerful Todo App that allows you to create projects, manage tasks
 ---
 
 ## 📂 Project Structure
+
 ```
 📦 todo-app
 ├── 📂 src
@@ -70,6 +78,7 @@ A minimal yet powerful Todo App that allows you to create projects, manage tasks
 │   │   ├── projectState.js # Handles localStorage
 │   ├── 📜 styles.css     # Styling
 │   ├── 📜 template.html  # HTML template
+├── 📂 screenshots        # Folder for project screenshots
 ├── 📜 webpack.config.js  # Webpack config
 ├── 📜 package.json       # Dependencies & scripts
 ```
@@ -77,11 +86,13 @@ A minimal yet powerful Todo App that allows you to create projects, manage tasks
 ---
 
 ## 🌍 Live Demo
-🔗 **[Check it out on GitHub Pages / Netlify / Vercel](#)** *(Add link after deployment)*
+
+🔗 **[Check it out on GitHub Pages / Netlify / Vercel](#)** _(Add link after deployment)_
 
 ---
 
 ## 🏗️ Future Improvements
+
 - 🔄 **Drag & Drop Task Reordering**
 - 🌙 **Dark Mode Support**
 - 📅 **Calendar View for Due Dates**
@@ -90,11 +101,13 @@ A minimal yet powerful Todo App that allows you to create projects, manage tasks
 ---
 
 ## 📜 License
+
 This project is **open-source** and available under the **MIT License**.
 
 ---
 
 ## 🤝 Contributing
+
 Have an idea to improve this project? Feel free to submit a pull request! 💡
 
 1. Fork the repository
@@ -106,13 +119,12 @@ Have an idea to improve this project? Feel free to submit a pull request! 💡
 ---
 
 ## 🎯 Acknowledgments
+
 Built as part of [The Odin Project](https://www.theodinproject.com/) curriculum. 🚀
 
 ---
 
 ### 📩 Contact
-For any questions, feel free to reach out! 😊  
-📧 Email: **your.email@example.com**  
-🐦 Twitter: [@yourhandle](https://twitter.com/yourhandle)  
-💼 LinkedIn: [Your Name](https://linkedin.com/in/yourname)
 
+For any questions, feel free to reach out! 😊  
+💼 LinkedIn: [Chetan M N](https://linkedin.com/in/yourname)
