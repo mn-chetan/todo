@@ -71,11 +71,11 @@ A minimal yet powerful Todo App that allows you to create projects, manage tasks
 📦 todo-app
 ├── 📂 src
 │   ├── 📂 scripts        # JavaScript modules
-│   │   ├── index.js      # Main entry point
 │   │   ├── todo.js       # Todo-related functions
 │   │   ├── sidebar.js    # Project sidebar logic
 │   │   ├── state.js      # Default state of projects/todos
 │   │   ├── projectState.js # Handles localStorage
+│   ├── 📜 index.js       # Main entry point
 │   ├── 📜 styles.css     # Styling
 │   ├── 📜 template.html  # HTML template
 ├── 📂 screenshots        # Folder for project screenshots
@@ -87,7 +87,7 @@ A minimal yet powerful Todo App that allows you to create projects, manage tasks
 
 ## 🌍 Live Demo
 
-🔗 **[Check it out on GitHub Pages / Netlify / Vercel](#)** _(Add link after deployment)_
+🔗 **[Check it out on GitHub Pages](https://mn-chetan.github.io/todo/)**
 
 ---
 
