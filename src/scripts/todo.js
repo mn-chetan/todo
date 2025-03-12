@@ -200,10 +200,10 @@ const removeTodo = (projectId) => {
   const activeProject = localStorage.getItem("activeProject")
     ? JSON.parse(localStorage.getItem("activeProject"))
     : { active: "Personal" };
-  
+
   // Retrieve the current project state
   const projectState = getProjectState();
-  
+
   // Iterate through all todos in the project state
   for (let value of Object.values(projectState).flat(Infinity)) {
     if (value.id === projectId) {
@@ -211,13 +211,191 @@ const removeTodo = (projectId) => {
       projectState[activeProject["active"]] = projectState[
         activeProject["active"]
       ].filter((todo) => todo.id !== projectId);
-      
+
       // Update the project state with the modified todo list
       setProjectState(projectState);
       break; // Exit loop once the todo is found and removed
     }
   }
-  
+
   // Refresh the todo list display with the updated todos for the active project
   updateTodo(projectState[activeProject["active"]]);
+};
+
+export const addTodo = () => {
+  // Create "Add Todo" button
+  const todoList = document.querySelector(".todo-list");
+  const addTodoBtn = document.createElement("button");
+  addTodoBtn.classList.add("add-todo-btn");
+  addTodoBtn.textContent = "+ Add Todo";
+
+  // Insert the button after the todo list
+  const main = document.querySelector(".main");
+  todoList.after(addTodoBtn);
+
+  // Add click event to show the todo form
+  addTodoBtn.addEventListener("click", () => {
+    // Remove any existing forms first
+    removeExistingTodoContainer();
+
+    // Create todo form container
+    const todoContainer = document.createElement("div");
+    todoContainer.classList.add("todo-container");
+
+    const todoForm = document.createElement("form");
+
+    // Title field
+    const titleLabel = document.createElement("label");
+    titleLabel.setAttribute("for", "title");
+    titleLabel.textContent = "Title:";
+    const titleInput = document.createElement("input");
+    titleInput.setAttribute("type", "text");
+    titleInput.setAttribute("id", "title");
+    titleInput.setAttribute("placeholder", "Enter todo title");
+    titleInput.setAttribute("name", "title");
+    titleInput.required = true;
+
+    // Due date field
+    const dueDateLabel = document.createElement("label");
+    dueDateLabel.setAttribute("for", "due-date");
+    dueDateLabel.textContent = "Due Date:";
+    const dueDateInput = document.createElement("input");
+    dueDateInput.setAttribute("type", "date");
+    dueDateInput.setAttribute("id", "due-date");
+    dueDateInput.setAttribute("name", "date");
+    dueDateInput.required = true;
+
+    // Set default date to today
+    const today = new Date();
+    const formattedDate = today.toISOString().split("T")[0];
+    dueDateInput.setAttribute("value", formattedDate);
+
+    // Priority dropdown
+    const priorityLabel = document.createElement("label");
+    priorityLabel.setAttribute("for", "priority");
+    priorityLabel.textContent = "Priority:";
+    const prioritySelect = document.createElement("select");
+    prioritySelect.setAttribute("id", "priority");
+    prioritySelect.setAttribute("name", "priority");
+
+    const priorityLowOption = document.createElement("option");
+    priorityLowOption.textContent = "Low";
+    const priorityMediumOption = document.createElement("option");
+    priorityMediumOption.textContent = "Medium";
+    const priorityHighOption = document.createElement("option");
+    priorityHighOption.textContent = "High";
+
+    prioritySelect.appendChild(priorityLowOption);
+    prioritySelect.appendChild(priorityMediumOption);
+    prioritySelect.appendChild(priorityHighOption);
+
+    // Description field
+    const descriptionLabel = document.createElement("label");
+    descriptionLabel.setAttribute("for", "description");
+    descriptionLabel.textContent = "Description:";
+    const descriptionInput = document.createElement("textarea");
+    descriptionInput.setAttribute("id", "description");
+    descriptionInput.setAttribute("name", "description");
+    descriptionInput.setAttribute("placeholder", "Enter description");
+    descriptionInput.style.width = "100%";
+    descriptionInput.style.height = "80px";
+    descriptionInput.style.padding = "0.6rem";
+    descriptionInput.style.border = "1px solid #ddd";
+    descriptionInput.style.borderRadius = "3px";
+    descriptionInput.style.resize = "vertical";
+
+    // Notes field
+    const notesLabel = document.createElement("label");
+    notesLabel.setAttribute("for", "notes");
+    notesLabel.textContent = "Notes:";
+    const notesInput = document.createElement("textarea");
+    notesInput.setAttribute("id", "notes");
+    notesInput.setAttribute("name", "notes");
+    notesInput.setAttribute("placeholder", "Any additional notes");
+    notesInput.style.width = "100%";
+    notesInput.style.height = "60px";
+    notesInput.style.padding = "0.6rem";
+    notesInput.style.border = "1px solid #ddd";
+    notesInput.style.borderRadius = "3px";
+    notesInput.style.resize = "vertical";
+
+    // Create container for form buttons
+    const buttonContainer = document.createElement("div");
+    buttonContainer.classList.add("button-container");
+
+    // Submit Button
+    const submitButton = document.createElement("button");
+    submitButton.textContent = "Add Todo";
+    submitButton.classList.add("btn-submit");
+    submitButton.setAttribute("type", "submit");
+
+    // Cancel Button
+    const cancelButton = document.createElement("button");
+    cancelButton.textContent = "Cancel";
+    cancelButton.classList.add("btn-close");
+    cancelButton.setAttribute("type", "button");
+
+    // Remove todo container when cancel is clicked
+    cancelButton.addEventListener("click", () => {
+      removeExistingTodoContainer();
+    });
+
+    buttonContainer.appendChild(cancelButton);
+    buttonContainer.appendChild(submitButton);
+
+    // Assemble the form
+    todoForm.appendChild(titleLabel);
+    todoForm.appendChild(titleInput);
+    todoForm.appendChild(dueDateLabel);
+    todoForm.appendChild(dueDateInput);
+    todoForm.appendChild(priorityLabel);
+    todoForm.appendChild(prioritySelect);
+    todoForm.appendChild(descriptionLabel);
+    todoForm.appendChild(descriptionInput);
+    todoForm.appendChild(notesLabel);
+    todoForm.appendChild(notesInput);
+    todoForm.appendChild(buttonContainer);
+
+    // Form submission event
+    todoForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(todoForm);
+      const title = formData.get("title");
+      const date = formData.get("due-date");
+      const priority = formData.get("priority");
+      const description = formData.get("description");
+      const notes = formData.get("notes");
+
+      const activeProject = localStorage.getItem("activeProject")
+        ? JSON.parse(localStorage.getItem("activeProject"))
+        : { active: "Personal" };
+
+      let id = 0;
+      Object.values(getProjectState()[activeProject["active"]]).forEach(
+        (value) => (id = Number(value.id.split("-")[1]))
+      );
+      id = `proj-${id + 1}`;
+
+      const newTodo = {
+        id,
+        title,
+        dueDate: date,
+        priority,
+        description,
+        notes,
+      };
+
+      const currentProject = getProjectState();
+      currentProject[activeProject["active"]].push(newTodo);
+      setProjectState(currentProject);
+
+      removeExistingTodoContainer();
+    });
+
+    todoContainer.appendChild(todoForm);
+
+    // Add the form after the "Add Todo" button
+    addTodoBtn.after(todoContainer);
+  });
 };
