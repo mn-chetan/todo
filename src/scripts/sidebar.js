@@ -192,5 +192,8 @@ const deleteProject = (projectName) => {
   delete projectState[projectName]; // Remove project from state
   setProjectState(projectState); // Save new state to local storage
   loadProjects(); // Refresh project list
-  updateTodo([]);
+  updateTodo([]); // Clear todos when project is deleted
+  const mainTitle = document.querySelector(".main h1");
+  mainTitle.textContent = ""; // Remove title
+  switchProject(); // Enable switch project
 };
