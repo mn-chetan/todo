@@ -192,4 +192,5 @@ const deleteProject = (projectName) => {
   delete projectState[projectName]; // Remove project from state
   setProjectState(projectState); // Save new state to local storage
   loadProjects(); // Refresh project list
+  updateTodo([]);
 };
