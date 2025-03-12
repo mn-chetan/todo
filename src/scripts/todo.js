@@ -399,6 +399,8 @@ export const addTodo = () => {
       currentProject[activeProject["active"]].push(newTodo);
       setProjectState(currentProject);
 
+      updateTodo(currentProject[activeProject["active"]]);
+
       removeExistingTodoContainer();
     });
 
