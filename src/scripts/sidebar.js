@@ -155,6 +155,8 @@ export const loadProjects = () => {
       li.querySelector(".project-title").textContent === activeProject["active"]
     ) {
       li.classList.add("active");
+      const mainTitle = document.querySelector(".main h1");
+      mainTitle.textContent = li.querySelector(".project-title").textContent + " Todos";
       updateTodo(
         getProjectState()[li.querySelector(".project-title").textContent]
       );
