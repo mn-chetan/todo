@@ -127,4 +127,4 @@ Built as part of [The Odin Project](https://www.theodinproject.com/) curriculum.
 ### 📩 Contact
 
 For any questions, feel free to reach out! 😊  
-💼 LinkedIn: [Chetan M N](https://linkedin.com/in/yourname)
+💼 LinkedIn: [Chetan M N](https://www.linkedin.com/in/chetan-m-n/)
