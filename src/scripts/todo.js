@@ -278,16 +278,25 @@ export const addTodo = () => {
     prioritySelect.setAttribute("id", "priority");
     prioritySelect.setAttribute("name", "priority");
 
+    // Priority dropdown options
     const priorityLowOption = document.createElement("option");
     priorityLowOption.textContent = "Low";
+    priorityLowOption.value = "low"; // Set value
+
     const priorityMediumOption = document.createElement("option");
     priorityMediumOption.textContent = "Medium";
+    priorityMediumOption.value = "medium"; // Set value
+
     const priorityHighOption = document.createElement("option");
     priorityHighOption.textContent = "High";
+    priorityHighOption.value = "high"; // Set value
 
     prioritySelect.appendChild(priorityLowOption);
     prioritySelect.appendChild(priorityMediumOption);
     prioritySelect.appendChild(priorityHighOption);
+
+    // Set default selection explicitly
+    prioritySelect.value = "low";
 
     // Description field
     const descriptionLabel = document.createElement("label");
@@ -362,7 +371,7 @@ export const addTodo = () => {
 
       const formData = new FormData(todoForm);
       const title = formData.get("title");
-      const date = formData.get("due-date");
+      const date = formData.get("date");
       const priority = formData.get("priority");
       const description = formData.get("description");
       const notes = formData.get("notes");
